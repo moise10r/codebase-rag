@@ -1,0 +1,7 @@
+streamlit
+sentence-transformers
+pinecone-client
+langchain
+langchain-community
+openai
+gitpython
