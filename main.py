@@ -153,3 +153,61 @@ Question: {query}"""
     except Exception as e:
         return False, str(e)
 
+# Streamlit UI
+st.title("🤖 CodeBase RAGBot")
+st.markdown("Chat with your codebase using AI")
+
+# Initialize session state
+if 'messages' not in st.session_state:
+    st.session_state.messages = []
+if 'repo_url' not in st.session_state:
+    st.session_state.repo_url = ''
+if 'repo_processed' not in st.session_state:
+    st.session_state.repo_processed = False
+
+# Sidebar for repository input
+with st.sidebar:
+    st.header("Repository Settings")
+    repo_url = st.text_input("GitHub Repository URL", 
+                            placeholder="https://github.com/username/repo",
+                            key="repo_url_input")
+
+    if repo_url and repo_url != st.session_state.repo_url:
+        with st.spinner("Processing repository..."):
+            success, message = process_repository(repo_url)
+            if success:
+                st.session_state.repo_url = repo_url
+                st.session_state.repo_processed = True
+                st.success(message)
+            else:
+                st.error(f"Error: {message}")
+                st.session_state.repo_processed = False
+
+# Main chat interface
+if st.session_state.repo_processed:
+    # Display chat messages
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
+
+    # Chat input
+    if prompt := st.chat_input("Ask about the codebase..."):
+        # Add user message
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        with st.chat_message("user"):
+            st.markdown(prompt)
+
+        # Generate response
+        with st.chat_message("assistant"):
+            with st.spinner("Thinking..."):
+                success, response = perform_rag(prompt, st.session_state.repo_url)
+                if success:
+                    st.markdown(response)
+                    st.session_state.messages.append({"role": "assistant", "content": response})
+                else:
+                    st.error(f"Error: {response}")
+else:
+    st.info("👈 Please enter a GitHub repository URL in the sidebar to start chatting.")
+
+# Footer
+st.markdown("---")
