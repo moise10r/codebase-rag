@@ -94,3 +94,39 @@ def process_repository(repo_url):
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
+def perform_rag(query, repo_url):
+    """Perform RAG query."""
+    try:
+        # Get query embedding
+        query_embedding = model.encode(query)
+
+        # Query Pinecone
+        top_matches = pinecone_index.query(
+            vector=query_embedding.tolist(),
+            top_k=5,
+            include_metadata=True,
+            namespace=repo_url
+        )
+
+        # Get contexts
+        contexts = [item['metadata']['text'] for item in top_matches['matches']]
+
+        # Create augmented query
+        augmented_query = "<CONTEXT>\n" + "\n\n-------\n\n".join(contexts[:10]) + \
+                         "\n-------\n</CONTEXT>\n\n\n\nMY QUESTION:\n" + query
+
+        # Get LLM response
+        system_prompt = """You are a Senior Software Engineer. Answer questions about the codebase 
+                         based on the provided context. Be concise and technical."""
+
+        llm_response = client.chat.completions.create(
+            model="llama-3.1-70b-versatile",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": augmented_query}
+            ]
+        )
+
+        return {"status": "success", "response": llm_response.choices[0].message.content}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
