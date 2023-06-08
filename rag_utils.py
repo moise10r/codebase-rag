@@ -60,3 +60,37 @@ def get_main_files_content(repo_path):
                 if file_content:
                     files_content.append(file_content)
     return files_content
+
+def process_repository(repo_url):
+    """Process repository and store embeddings."""
+    try:
+        # Clone repository
+        repo_path = clone_repository(repo_url)
+
+        # Get file contents
+        file_content = get_main_files_content(repo_path)
+
+        # Create documents
+        documents = [
+            Document(
+                page_content=f"{file['name']}\n{file['content']}",
+                metadata={"source": file['name']}
+            )
+            for file in file_content
+        ]
+
+        # Store in Pinecone
+        vectorstore = PineconeVectorStore.from_documents(
+            documents=documents,
+            embedding=HuggingFaceEmbeddings(),
+            index_name="codebase-rag",
+            namespace=repo_url
+        )
+
+        # Cleanup
+        shutil.rmtree(repo_path)
+
+        return {"status": "success", "message": "Repository processed successfully"}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
