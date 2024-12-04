@@ -12,7 +12,7 @@ Unlike traditional code search tools, CodeBase RAGBot understands the context an
 - **Smart Code Understanding**: Uses RAG to provide context-aware responses about the codebase
 - **Interactive Chat**: Natural conversation interface to ask questions about the code
 - **Multiple Language Support**: Supports Python, JavaScript, TypeScript, Java, and more
-- **Token-Optimized**: Efficient handling of large codebases with smart context management
+- **Token-Optimized**: Efficient handling of large codebases with smart context management.
 
 ## Tech Stack 
 
