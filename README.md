@@ -1,4 +1,5 @@
 # CodeBase RAGBot 
+<img width="1728" alt="image" src="https://github.com/user-attachments/assets/75db1dcf-b3d8-4b8b-8d72-3a9e9177963c">
 
 ## What is CodeBase RAGBot?
 
