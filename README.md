@@ -34,7 +34,7 @@ Unlike traditional code search tools, CodeBase RAGBot understands the context an
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/aneezahere/codebase-rag.git
+git clone https://github.com/moise10r/codebase-rag.git
 cd codebase-rag
 ```
 
