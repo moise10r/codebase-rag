@@ -7,7 +7,7 @@ CodeBase RAGBot is an innovative tool that transforms how developers understand 
 
 Unlike traditional code search tools, CodeBase RAGBot understands the context and relationships within the code, allowing it to provide more meaningful and comprehensive answers. It can explain code functionality, suggest improvements, identify patterns, and help you understand how different parts of the codebase interact with each other. This makes it an invaluable tool for code review, onboarding, and maintaining large projects.
 
-## Features 
+
 
 - **Repository Analysis**: Load and analyze any public GitHub repository
 - **Smart Code Understanding**: Uses RAG to provide context-aware responses about the codebase
