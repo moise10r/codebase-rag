@@ -16,7 +16,7 @@ SUPPORTED_EXTENSIONS = {'.py', '.js', '.tsx', '.jsx', '.ipynb', '.java',
 IGNORED_DIRS = {'node_modules', 'venv', 'env', 'dist', 'build', '.git',
                 '__pycache__', '.next', '.vscode', 'vendor'}
 
-
+# Initialize the sentence transformer model
 client = OpenAI(
     base_url="https://api.groq.com/openai/v1",
     api_key=os.getenv("GROQ_API_KEY")
