@@ -9,7 +9,7 @@ import os
 import shutil
 import tempfile
 
-# Initialize configurations
+
 SUPPORTED_EXTENSIONS = {'.py', '.js', '.tsx', '.jsx', '.ipynb', '.java',
                        '.cpp', '.ts', '.go', '.rs', '.vue', '.swift', '.c', '.h'}
 
