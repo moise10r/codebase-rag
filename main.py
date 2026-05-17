@@ -10,7 +10,7 @@ import os
 import shutil
 import tempfile
 
-# Page configuration
+
 st.set_page_config(
     page_title="CodeBase RAGBot",
     page_icon="🤖",
