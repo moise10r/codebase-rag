@@ -97,7 +97,7 @@ def process_repository(repo_url):
 def perform_rag(query, repo_url):
     """Perform RAG query."""
     try:
-        # Get query embedding
+
         query_embedding = model.encode(query)
 
         # Query Pinecone
