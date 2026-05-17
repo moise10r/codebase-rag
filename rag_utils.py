@@ -64,7 +64,7 @@ def get_main_files_content(repo_path):
 def process_repository(repo_url):
     """Process repository and store embeddings."""
     try:
-        # Clone repository
+
         repo_path = clone_repository(repo_url)
 
         # Get file contents
