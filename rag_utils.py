@@ -25,7 +25,7 @@ client = OpenAI(
 pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
 pinecone_index = pc.Index("codebase-rag")
 
-# Initialize the sentence transformer model
+
 model = SentenceTransformer("sentence-transformers/all-mpnet-base-v2")
 
 def clone_repository(repo_url):
