@@ -17,7 +17,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# Initialize configurations
+
 SUPPORTED_EXTENSIONS = {'.py', '.js', '.tsx', '.jsx', '.ipynb', '.java',
                        '.cpp', '.ts', '.go', '.rs', '.vue', '.swift', '.c', '.h'}
 
